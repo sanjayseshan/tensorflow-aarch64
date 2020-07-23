@@ -11,7 +11,7 @@ $ sudo pip3 install tensorflow-2.4.0-cp37-cp37m-linux_aarch64.whl
 ~~~
 
 
-# To compile yourself (on Debian buster):
+# To compile yourself (on Debian buster arm64 host):
 
 1) Compile bazel
 
@@ -103,4 +103,4 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import tensorflow
 >>>
 ~~~
-If there are no error messages, then you are done. Note that this may take several days to finish depending on your setup. On a QEMU aarch64 system on an Intel i7, this took roughly 7 days.
+If there are no error messages, then you are done. Note that this may take several days to finish depending on your setup. On a QEMU aarch64 system on an Intel i7, this took roughly 7 days. Look at https://wiki.debian.org/Arm64Qemu to make a aarch64 VM. Cross compiling is probably faster than this.
