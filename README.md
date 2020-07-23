@@ -7,7 +7,7 @@ Built on Debian 10.4 Buster ARM64 port with Python 3.7.3. Known to work on Debia
 Install using pip.
 
 ~~~
-sudo pip3 install tensorflow-2.4.0-cp37-cp37m-linux_aarch64.whl
+$ sudo pip3 install tensorflow-2.4.0-cp37-cp37m-linux_aarch64.whl
 ~~~
 
 
@@ -16,31 +16,31 @@ sudo pip3 install tensorflow-2.4.0-cp37-cp37m-linux_aarch64.whl
 1) Compile bazel
 
 ~~~
-sudo apt-get install git wget vim zip build-essential python python3 python3-dev python3-pip libhdf5-dev openjdk-11-{jdk,jre}
-cd ~
-mkdir bazel
-cd bazel
-wget https://github.com/bazelbuild/bazel/releases/download/3.4.1/bazel-3.4.1-dist.zip
-unzip bazel-3.4.1-dist.zip
-./compile.sh
+$ sudo apt-get install git wget vim zip build-essential python python3 python3-dev python3-pip libhdf5-dev openjdk-11-{jdk,jre}
+$ cd ~
+$ mkdir bazel
+$ cd bazel
+$ wget https://github.com/bazelbuild/bazel/releases/download/3.4.1/bazel-3.4.1-dist.zip
+$ unzip bazel-3.4.1-dist.zip
+$ ./compile.sh
 ~~~
 
 2) Install bazel
 ~~~
-sudo cp ~/bazel/output/bazel /usr/local/bin/
+$ sudo cp ~/bazel/output/bazel /usr/local/bin/
 ~~~
 
 3) Install tensorflow dependencies
 ~~~
-cd ~
-git clone https://github.com/tensorflow/tensorflow.git
-cd tensorflow
-sudo pip3 install six wheel
-sudo apt-get install python3-numpy python3-keras python3-keras-applications python3-preprocessing
+$ cd ~
+$ git clone https://github.com/tensorflow/tensorflow.git
+$ cd tensorflow
+$ sudo pip3 install six wheel
+$ sudo apt-get install python3-numpy python3-keras python3-keras-applications python3-preprocessing
 ~~~
 4) Configure tensorflow with default options (no accelerations)
 ~~~
-./configure
+$ ./configure
 
 You have bazel 3.4.1- (@non-git) installed.
 Please specify the location of python. [Default is /usr/bin/python3]: 
@@ -86,21 +86,21 @@ Configuration finished
 ~~~
 5) Compile tensorflow
 ~~~
-bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package --jobs 4
-sudo mkdir /tfpkg
-bazel-bin/tensorflow/tools/pip_package/build_pip_package /tfpkg/tensorflow_pkg
+$ bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package --jobs 4
+$ sudo mkdir /tfpkg
+$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tfpkg/tensorflow_pkg
 ~~~
 6) Install tensorflow
 ~~~
-sudo pip3 install /tfpkg/tensorflow_pkg/tensorflow-*.whl
+$ sudo pip3 install /tfpkg/tensorflow_pkg/tensorflow-*.whl
 ~~~
 7) Test tensorflow
 ~~~
-python3
+$ python3
 Python 3.7.3 (default, Dec 20 2019, 18:57:59) 
 [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import tensorflow
 >>>
 ~~~
-If there are no error messages, then you are done
+If there are no error messages, then you are done. Note that this may take several days to finish depending on your setup. On a QEMU aarch64 system on an Intel i7, this took roughly 7 days.
